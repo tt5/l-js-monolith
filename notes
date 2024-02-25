@@ -1,3 +1,4 @@
 node --test tests/*.js
 node --test --import tsx tests/*.test.ts
 node db.cjs
+fastify start -p 3001 home/routes.js

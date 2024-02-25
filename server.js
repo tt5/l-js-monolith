@@ -21,7 +21,7 @@ some.register(autoLoad, {
 })
 
 const dispatcher = new FastifyUndiciDispatcher({
-  domain: '.a' // optional
+  domain: '.tt5.workers.dev'
 })
 dispatcher.route('home', home)
 dispatcher.route('some', some)

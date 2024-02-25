@@ -3,7 +3,7 @@ import { pipeline } from 'readable-stream'
 import { connect } from 'net'
 
 
-export default async function Home (home, opts, next) {
+export default async function Home (home, opts) {
 
 const db = new ManyLevelGuest()
 const socket = connect(9000)
@@ -14,19 +14,28 @@ pipeline(socket, db.createRpcStream(), socket, () => {
 })
 
   home.get('/', async (req, reply) => {
-    const res = await fetch('http://some.a')
+    const res = await fetch('http://some.tt5.workers.dev')
     return (await res.json())
   })
 
-  home.get('/put', async (req, reply) => {
-    await db.put("one", "1")
+  home.get('/put/:key/:value', async (req, reply) => {
+    const {key, value} = req.params
+    const res = await db.put(key, value)
 
-    return {some: "put"}
+    return {res: res}
   })
 
-  home.get('/get', async (req, reply) => {
-    const res = await db.get("one")
+  home.get('/get/:key', async (req, reply) => {
+    const {key} = req.params
+    const res = await db.get(key)
 
-    return {some: res}
+    return {res: res}
+  })
+
+  home.get('/del/:key', async (req, reply) => {
+    const {key} = req.params
+    const res = await db.del(key)
+
+    return {res: res}
   })
 }
