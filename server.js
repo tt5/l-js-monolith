@@ -4,17 +4,25 @@ import FastifyUndiciDispatcher from 'fastify-undici-dispatcher'
 import autoLoad from '@fastify/autoload'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import * as dotenv from "dotenv"
+dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const home = Fastify()
+const home = Fastify({
+  logger: true,
+  disableRequestLogging: true
+})
 
 home.register(autoLoad, {
   dir: join(__dirname, 'home')
 })
 
-const some = Fastify()
+const some = Fastify({
+  logger: true,
+  disableRequestLogging: true
+})
 
 some.register(autoLoad, {
   dir: join(__dirname, 'some')

@@ -5,7 +5,6 @@ import { connect } from 'net'
 const db = new ManyLevelGuest()
 const socket = connect(9000)
 
-// Pipe socket into guest stream and vice versa
 pipeline(socket, db.createRpcStream(), socket, () => {
   // Disconnected
 })

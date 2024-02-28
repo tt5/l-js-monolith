@@ -15,6 +15,6 @@ test('routes', async (t) => {
     async (t) => {
       const res = await fetch('http://127.0.0.1:3000')
       const json = await res.json()
-      strictEqual(JSON.stringify(json), JSON.stringify({some: "hello"}))
+      strictEqual(JSON.stringify(json), JSON.stringify({hello: "world"}))
   })
 })

@@ -1,4 +1,6 @@
 node --test tests/*.js
 node --test --import tsx tests/*.test.ts
 node db.cjs
-fastify start -p 3001 home/routes.js
+fastify start -w -p 3001 home/routes.js
+node server.js | jq -r '{reqId, msg}'
+curl -H "Authorization: Bearer <gho_...>" https://api.github.com/user
