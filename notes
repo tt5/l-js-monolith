@@ -3,4 +3,14 @@ node --test --import tsx tests/*.test.ts
 node db.cjs
 fastify start -w -p 3001 home/routes.js
 node server.js | jq -r '{reqId, msg}'
+
 curl -H "Authorization: Bearer <gho_...>" https://api.github.com/user
+
+client page:
+<a href="http://localhost:3000/login/github">
+
+teller run env
+docker run --rm -it --env-file <(teller env) alpine sh
+
+
+podman build . -t fastify
